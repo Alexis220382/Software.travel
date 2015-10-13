@@ -2,14 +2,11 @@ package com.controllers;
 
 import com.dao.FormulaDAO;
 import com.dao.ResultDAO;
-import com.entity.*;
 import com.io.ReadFile;
 import com.io.WriteFile;
-import com.notation.ExpressionUtils;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+import com.notation.ExpressionUtilHex;
+import com.notation.ExpressionUtilBinary;
+import com.notation.ExpressionUtilDecimal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,18 +25,20 @@ public class MainController {
     ModelAndView modelAndView;
     ReadFile readFile;
     WriteFile writeFile;
-    ExpressionUtils expressionUtils;
+    ExpressionUtilDecimal expressionUtilDecimal;
+    ExpressionUtilBinary expressionUtilBinary;
+    ExpressionUtilHex expressionUtilHex;
     ResultDAO resultDAO;
     FormulaDAO formulaDAO;
 
-    private static final String PATH_IN = "d://Programming/Projects/IDEA/Software.travel/src/main/java/com/txt/Formula.txt";
-    private static final String PATH_OUT = "d://Programming/Projects/IDEA/Software.travel/src/main/java/com/txt/Result.txt";
+    private static final String PATH_IN = "d://Programming/Projects/IDEA/Software.travel/src/main/resources/txt/Formula.txt";
+    private static final String PATH_OUT = "d://Programming/Projects/IDEA/Software.travel/src/main/resources/txt/Result.txt";
 
-    @RequestMapping(value = "/hand", method = RequestMethod.GET)
-    public ModelAndView hand(HttpServletRequest request) throws IOException {
+    @RequestMapping(value = "/hand2", method = RequestMethod.GET)
+    public ModelAndView hand2(HttpServletRequest request) throws IOException {
 
         modelAndView = new ModelAndView();
-        expressionUtils = new ExpressionUtils();
+        expressionUtilBinary = new ExpressionUtilBinary();
 
         infix = request.getParameter("textfield");
 
@@ -47,15 +46,73 @@ public class MainController {
             infix = "0";
         }
 
-        String calculated = String.valueOf(expressionUtils.calculateExpression(infix));
+        String calculated = String.valueOf(expressionUtilBinary.calculateExpression(infix));
 
-        request.setAttribute("result", calculated);
+        request.setAttribute("result2", Integer.toBinaryString(Integer.parseInt(calculated)));
+
+        resultDAO = new ResultDAO();
+        resultDAO.save(Integer.toBinaryString(Integer.parseInt(calculated)));
+
+        writeFile = new WriteFile();
+        writeFile.write(PATH_OUT, Integer.toBinaryString(Integer.parseInt(calculated)));
+
+        modelAndView.setViewName("index");
+
+        writeFile.close();
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/hand10", method = RequestMethod.GET)
+    public ModelAndView hand10(HttpServletRequest request) throws IOException {
+
+        modelAndView = new ModelAndView();
+        expressionUtilDecimal = new ExpressionUtilDecimal();
+
+        infix = request.getParameter("textfield");
+
+        if (infix == null || infix == "") {
+            infix = "0";
+        }
+
+        String calculated = String.valueOf(expressionUtilDecimal.calculateExpression(infix));
+
+        request.setAttribute("result10", calculated);
 
         resultDAO = new ResultDAO();
         resultDAO.save(calculated);
 
         writeFile = new WriteFile();
         writeFile.write(PATH_OUT, calculated);
+
+        modelAndView.setViewName("index");
+
+        writeFile.close();
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/hand16", method = RequestMethod.GET)
+    public ModelAndView hand16(HttpServletRequest request) throws IOException {
+
+        modelAndView = new ModelAndView();
+        expressionUtilHex = new ExpressionUtilHex();
+
+        infix = request.getParameter("textfield");
+
+        if (infix == null || infix == "") {
+            infix = "0";
+        }
+
+        String calculated = String.valueOf(expressionUtilHex.calculateExpression(infix));
+
+        request.setAttribute("result16", Integer.toHexString(Integer.parseInt(calculated)));
+
+        resultDAO = new ResultDAO();
+        resultDAO.save(Integer.toHexString(Integer.parseInt(calculated)));
+
+        writeFile = new WriteFile();
+        writeFile.write(PATH_OUT, Integer.toHexString(Integer.parseInt(calculated)));
 
         modelAndView.setViewName("index");
 

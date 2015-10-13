@@ -17,9 +17,6 @@ public class Result {
     @Column(name = "result", nullable = false)
     private String result;
 
-    @Column(name = "formula", nullable = false)
-    private String formula;
-
     public Result() {
     }
 
@@ -39,11 +36,4 @@ public class Result {
         this.result = result;
     }
 
-    public String getFormula() {
-        return formula;
-    }
-
-    public void setFormula(String formula) {
-        this.formula = formula;
-    }
 }

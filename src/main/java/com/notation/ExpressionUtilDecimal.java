@@ -9,7 +9,7 @@ import java.util.*;
  * @author Борис Марченко
  * @version $Revision$ $Date$
  */
-public class ExpressionUtils {
+public class ExpressionUtilDecimal {
     /**
      * Основные математические операции и их приоритеты.
      *
@@ -33,18 +33,18 @@ public class ExpressionUtils {
      * в ОПН. Символы скобок могут быть изменены.
      * <a href="http://ru.wikipedia.org/wiki/Обратная_польская_запись">Подробнее об ОПЗ</a>.
      *
-     * @param expression выражение в инфиксной форме.
-     * @param operations операторы, использующиеся в выражении (ассоциированные, либо лево-ассоциированные).
-     * Значениями карты служат приоритеты операции (самый высокий приоритет - 1). Например, для 5
-     * основных математических операторов карта будет выглядеть так:
-     * <pre>
-     *      *   ->   1
-     *      /   ->   1
-     *      +   ->   2
-     *      -   ->   2
-     * </pre>
-     * Приведенные операторы определены в константе {@link #MAIN_MATH_OPERATIONS}.
-     * @param leftBracket открывающая скобка.
+     * @param expression   выражение в инфиксной форме.
+     * @param operations   операторы, использующиеся в выражении (ассоциированные, либо лево-ассоциированные).
+     *                     Значениями карты служат приоритеты операции (самый высокий приоритет - 1). Например, для 5
+     *                     основных математических операторов карта будет выглядеть так:
+     *                     <pre>
+     *                          *   ->   1
+     *                          /   ->   1
+     *                          +   ->   2
+     *                          -   ->   2
+     *                     </pre>
+     *                     Приведенные операторы определены в константе {@link #MAIN_MATH_OPERATIONS}.
+     * @param leftBracket  открывающая скобка.
      * @param rightBracket закрывающая скобка.
      * @return преобразованное выражение в ОПН.
      */
@@ -143,15 +143,15 @@ public class ExpressionUtils {
      *
      * @param expression выражение в инфиксной форме.
      * @param operations операторы, использующиеся в выражении (ассоциированные, либо лево-ассоциированные).
-     * Значениями карты служат приоритеты операции (самый высокий приоритет - 1). Например, для 5
-     * основных математических операторов карта будет выглядеть так:
-     * <pre>
-     *      *   ->   1
-     *      /   ->   1
-     *      +   ->   2
-     *      -   ->   2
-     * </pre>
-     * Приведенные операторы определены в константе {@link #MAIN_MATH_OPERATIONS}.
+     *                   Значениями карты служат приоритеты операции (самый высокий приоритет - 1). Например, для 5
+     *                   основных математических операторов карта будет выглядеть так:
+     *                   <pre>
+     *                        *   ->   1
+     *                        /   ->   1
+     *                        +   ->   2
+     *                        -   ->   2
+     *                   </pre>
+     *                   Приведенные операторы определены в константе {@link #MAIN_MATH_OPERATIONS}.
      * @return преобразованное выражение в ОПН.
      */
     public static String sortingStation(String expression, Map<String, Integer> operations) {
@@ -196,24 +196,7 @@ public class ExpressionUtils {
     /**
      * Закрытый конструктор класса.
      */
-    public ExpressionUtils() {
+    public ExpressionUtilDecimal() {
     }
 
-    /**
-     * Тестирует методы.
-     *
-     * @param args список аргументов командной строки.
-     */
-//    public static void main(String[] args) {
-//        String expression = "3 + 8 * 2 / (1 - 5) + 4";
-//        System.out.println("Инфиксная нотация:         " + expression);
-//        System.out.println("\tРезультат 3");
-//        String rpn = sortingStation(expression, MAIN_MATH_OPERATIONS);
-//        System.out.println("Обратная польская нотация: " + rpn);
-//        System.out.println("\tРезультат " + calculateExpression(expression));
-//    }
 }
-     
-    /*
-    $Log: $
-    */

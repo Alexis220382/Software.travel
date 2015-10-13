@@ -7,6 +7,5 @@
                      <generator class="increment" />
               </id>
               <property column="result" name="result" type="java.lang.String" />
-              <property column="formula" name="formula" type="java.lang.String" />
        </class>
 </hibernate-mapping>
