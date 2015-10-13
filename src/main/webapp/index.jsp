@@ -1,8 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
-    <script type="text/javascript" src="js/Ajax.js"></script>
+    <title>Калькуятор</title>
     <link rel=stylesheet type="text/css" href="css/style.css">
 </head>
 <body background="images/bricks-12.gif">
