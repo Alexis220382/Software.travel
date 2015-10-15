@@ -31,8 +31,8 @@ public class MainController {
     ResultDAO resultDAO;
     FormulaDAO formulaDAO;
 
-    private static final String PATH_IN = "d://Programming/Projects/IDEA/Software.travel/src/main/resources/txt/Formula.txt";
-    private static final String PATH_OUT = "d://Programming/Projects/IDEA/Software.travel/src/main/resources/txt/Result.txt";
+    private final String PATH_IN = getClass().getResource("/txt/Formula.txt").getPath();
+    private final String PATH_OUT = getClass().getResource("/txt/Result.txt").getPath();
 
     @RequestMapping(value = "/hand2", method = RequestMethod.GET)
     public ModelAndView hand2(HttpServletRequest request) throws IOException {
@@ -54,6 +54,7 @@ public class MainController {
         resultDAO.save(Integer.toBinaryString(Integer.parseInt(calculated)));
 
         writeFile = new WriteFile();
+
         writeFile.write(PATH_OUT, Integer.toBinaryString(Integer.parseInt(calculated)));
 
         modelAndView.setViewName("index");

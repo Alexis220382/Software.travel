@@ -2,12 +2,15 @@ package com.console;
 
 import com.notation.ExpressionUtilBinary;
 
+import java.io.File;
 import java.util.Scanner;
 
 /**
  * Created by Ivanovskiy Alexey on 13.10.2015.
  */
 public class Console2 {
+
+    public String string = getClass().getResource("/txt/Formula.txt").getPath();
 
     public static void main(String[] arg) {
 
@@ -20,6 +23,7 @@ public class Console2 {
         System.out.println("Результат: "+Integer.toBinaryString(Integer.parseInt(calculated2)));
 
         in.close();
+
     }
 }
 

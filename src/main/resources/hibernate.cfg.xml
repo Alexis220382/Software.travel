@@ -13,7 +13,7 @@
     <property name="show_sql">true</property>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
-    <mapping resource="formula.hbm.tld" />
+    <mapping resource="formula.hbm.xml" />
     <mapping resource="result.hbm.xml" />
   </session-factory>
 </hibernate-configuration>
